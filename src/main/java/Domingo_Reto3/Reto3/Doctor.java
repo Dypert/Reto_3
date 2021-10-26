@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Domingo_Reto3.Reto3;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -17,10 +14,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * 
+ * @author dyper
+ * 
+ */
 @Entity
-@Table(name = "doctor") //Nombre de la tabla todo en minusculas para hacer relaciones despues
+@Table(name = "doctor") //Nombre de la tabla todo en minusculas para hacer relaciones.
 public class Doctor implements Serializable{
-    
+    /**
+     * atributos id, name, department, year, descripcion.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -29,17 +33,23 @@ public class Doctor implements Serializable{
     private Integer year;
     private String description;
     
+    /**
+     * metodos muchos a uno y uno a muchos
+     */
     @ManyToOne
     @JoinColumn(name = "specialtyId")
-    @JsonIgnoreProperties("doctor")
+    @JsonIgnoreProperties("doctors")
     private Especialidad specialty;  //specialty
-
+    
+/**
+ * 
+ */
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "doctor")
     @JsonIgnoreProperties({"doctor", "client"})
     private List<Mensaje> messages;
 
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "doctor")
-    @JsonIgnoreProperties({"doctor", "client"})
+    @JsonIgnoreProperties({"doctor", "message"})
     private List<Reservaciones> reservations;
 
     public Integer getId() {
@@ -105,6 +115,8 @@ public class Doctor implements Serializable{
     public void setReservations(List<Reservaciones> reservations) {
         this.reservations = reservations;
     }
+
     
+   
     
 }

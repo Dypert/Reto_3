@@ -30,7 +30,7 @@ public class ControladorDoctor {
     }
 
     @GetMapping("/{id}")
-    public Optional<Doctor> getDoctor(@PathVariable("id") int doctorId) {
+    public Optional<Doctor> getDoctors(@PathVariable("id") int doctorId) {
         return servicio.getDoctor(doctorId);
     }
 
