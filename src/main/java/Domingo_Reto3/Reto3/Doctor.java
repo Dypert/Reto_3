@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 /**
  * 
- * @author dyper
+ * @author yolima perdomo
  * 
  */
 @Entity
